@@ -1,30 +1,37 @@
 ﻿<?php
-
 /**
- * Arquivo que contem a classe de importação, com funções de consistencia
- * e de leitura de arquivos com base em layout pre-definido
+ * Classe KM_importador
+ * 
+ * Arquivo que contém a classe de importação, com funções de consistência
+ * e de leitura de arquivos com base em um arquivo de layout definido pelo
+ * programador
  *
- * @author Diego Tolentino
- * @package CORE
+ * @package   KM_importador
+ * @author    Diego Tolentino <diegotolentino@gmail.com>
+ * @license   http://www.gnu.org/licenses/lgpl.txt LGPL
+ * @link      http://code.google.com/p/kmimportador/
+ * @version   1.0 UTF-8
  */
 
 /**
  * Consiste o tamanho da linha (tamanho fixo)
  * 
  * Ex: 
+ * <code>
  * //confere se todas as linhas tem o tamanho de 150 caracteres
- * KM_importador::addCheck(KM_IMPORTADOR_CONSISTIR_TAMANHO, 150); 
- *
+ * $kmi->addCheck(KM_IMPORTADOR_CONSISTIR_TAMANHO, 150); 
+ * </code>
  */
 define('KM_IMPORTADOR_CONSISTIR_TAMANHO', 1);
 
 /**
- * Consiste o numero de colunas (dividido por tab)
+ * Consiste o número de colunas (dividido por tab)
  * 
  * Ex: 
+ * <code>
  * //confere se todas as linhas tem 10 colunas
- * KM_importador::addCheck(KM_IMPORTADOR_CONSISTIR_COLUNAS, 10);
- * 
+ * $kmi->addCheck(KM_IMPORTADOR_CONSISTIR_COLUNAS, 10);
+ * </code>
  */
 define('KM_IMPORTADOR_CONSISTIR_COLUNAS', 2);
 
@@ -32,38 +39,38 @@ define('KM_IMPORTADOR_CONSISTIR_COLUNAS', 2);
  * Consiste usando uma expressão regular passada como argumento
  * 
  * Ex: 
+ * <code>
  * //confere o campo 'NM_CAMPO' usando a expressão regular '^[0-9]{8}$'
- * KM_importador::addCheck(KM_IMPORTADOR_CONSISTIR_REGEX, 'NM_CAMPO', '^[0-9]{8}$');
- *
+ * $kmi->addCheck(KM_IMPORTADOR_CONSISTIR_REGEX, 'NM_CAMPO', '^[0-9]{8}$');
+ * </code>
  */
 define('KM_IMPORTADOR_CONSISTIR_REGEX', 3);
 
 /**
- * Consiste utilizando um trecho que será interpretado pela função eval
- * geralmente um teste de igualdade ou uma função
+ * Consiste utilizando um trecho que será interpretado pela função 
+ * {@link eval()} geralmente um teste de igualdade ou uma função
  *
  * Ex: 
+ * <code>
  * //confere se o campo 'VALOR1' é menor que 'VALOR2'
- * KM_importador::addCheck(KM_IMPORTADOR_CONSISTIR_FUNC, '[VALOR1] < [VALOR2]');
+ * $kmi->addCheck(KM_IMPORTADOR_CONSISTIR_FUNC, '[VALOR1] < [VALOR2]');
  * 
  * //confere se o campo 'COD_TIPO' esta entre 1 e 5
- * KM_importador::addCheck(KM_IMPORTADOR_CONSISTIR_FUNC, '[COD_TIPO] >=1 && [COD_TIPO] <=5');
+ * $kmi->addCheck(KM_IMPORTADOR_CONSISTIR_FUNC, '[COD_TIPO] >=1 && [COD_TIPO] <=5');
  * 
  * //confere o campo 'COD_EMPRESA' usando a função conferirEmpresa
- * KM_importador::addCheck(KM_IMPORTADOR_CONSISTIR_FUNC, 'conferirEmpresa([COD_EMPRESA])');
- * 
+ * $kmi->addCheck(KM_IMPORTADOR_CONSISTIR_FUNC, 'conferirEmpresa([COD_EMPRESA])');
+ * </code>
  */
 define('KM_IMPORTADOR_CONSISTIR_FUNC', 4);
 
 /**
- * Os campos do arquivo possuem tamanho fixo
- *
+ * Define que o arquivo tem os campos com tamanho fixo
  */
 define('KM_IMPORTADOR_FORMATO_FIXO', 1);
 
 /**
- * Os campos do arquivo são delimitados pelo caracter definido 
- * em KM_importador::sepCampo
+ * Os campos do arquivo são delimitados pelo caracter definido em {@link KM_importador::$sepCampo}
  * 
  * @todo Fazer opção para que o formato delimitado aceite tamanho maximo, pode ate usar
  * a mesma posição de tamanho do formato de tamanho fixo
@@ -71,14 +78,12 @@ define('KM_IMPORTADOR_FORMATO_FIXO', 1);
 define('KM_IMPORTADOR_FORMATO_DELIMITADO', 2);
 
 /**
- * A variavel $dados da instancia da classe é passada como um
- * endereço de arquivo
+ * Define que a variavel {@link $dados} da instancia da classe é passada como um endereço de arquivo
  */
 define('KM_IMPORTADOR_ORIGEM_ARQUIVO', 1);
 
 /**
- * A variavel $dados da instancia da classe é passada como um
- * endereço de arquivo
+ * A variavel  {@link $dados} da instancia da classe é passada como uma string a ser interpretada(arquivo já lido)
  */
 define('KM_IMPORTADOR_ORIGEM_STRING', 2);
 
@@ -173,7 +178,7 @@ class KM_importador {
 
 	/**
 	 * Linha onde aconteceu o erro, se estiver na parte
-	 * de consistencia retornará a linha do arquivo de dados,
+	 * de consistência retornará a linha do arquivo de dados,
 	 * caso contrario retorna a linha do programa onde
 	 * aconteceu o erro
 	 *
@@ -221,11 +226,13 @@ class KM_importador {
 	 * Função que será chamada no caso de haver erro na importação
 	 * aceita as constantes [TITULO] e [ERRO]
 	 * ex: 
+	 * <code>
 	 * //chama a função nomeFuncao passando os dados do erro
-	 * km_importador::onError='nomeFuncao('[TITULO]', '[ERRO]');
+	 * $kmi->onError='nomeFuncao('[TITULO]', '[ERRO]');
 	 * 
 	 * //aborta a execução mostrando uma mensagem na tela
-	 * km_importador::onError='die("Erro na importação: [ERRO]<br>")');
+	 * $kmi->onError='die("Erro na importação: [ERRO]<br>")');
+	 * </code>
 	 * 
 	 * @var string
 	 */
@@ -254,19 +261,19 @@ class KM_importador {
 	private $sepRegistro = "\n";
 
 	/**
-	 * Faz consistencia do arquivo(testa se o arquivo esta ok), de acordo com padroes
-	 * passados. Varias consistencias podem ser adicionadas e devem ter o retorno
+	 * Faz consistência do arquivo(testa se o arquivo esta ok), de acordo com padroes
+	 * passados. Varias consistências podem ser adicionadas e devem ter o retorno
 	 * testado uma a uma
 	 *
 	 * @param integer $tipoConsistencia ver as constantes KM_IMPORTADOR_CONSISTIR_*
-	 * @param mixed $valor1 seu preenchimento depende do tipo de consistencia executado
-	 * @param mixed $valor2 seu preenchimento depende do tipo de consistencia executado
+	 * @param mixed $valor1 seu preenchimento depende do tipo de consistência executado
+	 * @param mixed $valor2 seu preenchimento depende do tipo de consistência executado
 	 * @param string $errMsg mensagem em caso de erro
 	 * @return bool
 	 */
 	public function addCheck($tipoConsistencia, $valor1 = '', $valor2 = '', /*$linhaIni = null, $linhaFin = null, */$errMsg = null) {
 		if ($this->getError()) {
-			/*se já tiver feito uma consistencia e dado erro não pode perder a mensagem*/
+			/*se já tiver feito uma consistência e dado erro não pode perder a mensagem*/
 			return false;
 		}
 		/* linha inicial de onde o teste será executado(começa de "0"(zero))*/
@@ -279,7 +286,7 @@ class KM_importador {
 				case KM_IMPORTADOR_CONSISTIR_COLUNAS:
 					$aux = count($linha);
 					if (count($linha) != $valor1) {
-						/*coloca o numero de colunas no campo $msg*/
+						/*coloca o número de colunas no campo $msg*/
 						$errMsg = 'Número de colunas inesperado.<br>Esperado: %s. Encontrado: %s';
 						$this->setError(sprintf($errMsg, $valor1, $aux), $this->linhaAtual + 1);
 						$this->reset();
@@ -303,7 +310,7 @@ class KM_importador {
 					}
 					break;
 				case KM_IMPORTADOR_CONSISTIR_TAMANHO:
-					/*faz consistencia usando a soma do tamanho dos campos no layout*/
+					/*faz consistência usando a soma do tamanho dos campos no layout*/
 					if (!$valor1) {
 						foreach ($this->arrayLayout as $key => $campo) {
 							$valor1 += $campo['tam'];
@@ -366,8 +373,6 @@ class KM_importador {
 	/**
 	 * Reseta o cursor de leitura para a primeira linha
 	 * 
-	 * @todo verificar se esta função esta sendo utilizada
-	 * 
 	 * @return bool
 	 */
 	public function reset() {
@@ -376,7 +381,7 @@ class KM_importador {
 
 	/**
 	 * Retorna a mensagem de erro formatada, contendo
-	 * a mensagem e o numero da linha
+	 * a mensagem e o número da linha
 	 *
 	 * @return string
 	 */
@@ -389,7 +394,6 @@ class KM_importador {
 
 	/**
 	 * Retorna somente a linha onde aconteceu a mensagem
-	 * @see setError()
 	 *
 	 * @return integer
 	 */
@@ -417,7 +421,8 @@ class KM_importador {
 
 	/**
 	 * Posiciona o objeto sobre a linha e lê os dados de acordo com o layout
-	 * se não for passado o parametro $num lê a ultima linha posicionada pelo fetch()
+	 * se não for passado o parametro $num lê a ultima linha posicionada pelo 
+	 * {@link fetch()}
 	 *
 	 * @param integer $num
 	 * @return array
@@ -471,7 +476,7 @@ class KM_importador {
 	}
 
 	/**
-	 * Retorna o numero de linhas que o arquivo de dados contem
+	 * Retorna o número de linhas que o arquivo de dados contem
 	 *
 	 * @return integer
 	 */
@@ -480,7 +485,7 @@ class KM_importador {
 	}
 
 	/**
-	 * Trata o tipo do dado @see setLayout()
+	 * Trata o tipo do dado {@link setLayout()}
 	 *
 	 * @param string $defTipo
 	 * @param string $val
