@@ -1,0 +1,3 @@
+S=NMPESSOA=25//Nome do infeliz
+S=COMPARECEU=1//Se compareceu S ou N
+N,2=VALOR_GASTO=5//Valor gasto com comida/bebidas (N=numerico, 2=duas casas decimais)
