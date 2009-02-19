@@ -1,7 +1,7 @@
-<?php
+Ôªø<?php
 
 /**
- * Arquivo que contem a classe de importaÁ„o, com funÁıes de consistencia
+ * Arquivo que contem a classe de importa√ß√£o, com fun√ß√µes de consistencia
  * e de leitura de arquivos com base em layout pre-definido
  *
  * @author Diego Tolentino
@@ -29,27 +29,27 @@ define('KM_IMPORTADOR_CONSISTIR_TAMANHO', 1);
 define('KM_IMPORTADOR_CONSISTIR_COLUNAS', 2);
 
 /**
- * Consiste usando uma express„o regular passada como argumento
+ * Consiste usando uma express√£o regular passada como argumento
  * 
  * Ex: 
- * //confere o campo 'NM_CAMPO' usando a express„o regular '^[0-9]{8}$'
+ * //confere o campo 'NM_CAMPO' usando a express√£o regular '^[0-9]{8}$'
  * KM_importador::addCheck(KM_IMPORTADOR_CONSISTIR_REGEX, 'NM_CAMPO', '^[0-9]{8}$');
  *
  */
 define('KM_IMPORTADOR_CONSISTIR_REGEX', 3);
 
 /**
- * Consiste utilizando um trecho que ser· interpretado pela funÁ„o eval
- * geralmente um teste de igualdade ou uma funÁ„o
+ * Consiste utilizando um trecho que ser√° interpretado pela fun√ß√£o eval
+ * geralmente um teste de igualdade ou uma fun√ß√£o
  *
  * Ex: 
- * //confere se o campo 'VALOR1' È menor que 'VALOR2'
+ * //confere se o campo 'VALOR1' √© menor que 'VALOR2'
  * KM_importador::addCheck(KM_IMPORTADOR_CONSISTIR_FUNC, '[VALOR1] < [VALOR2]');
  * 
  * //confere se o campo 'COD_TIPO' esta entre 1 e 5
  * KM_importador::addCheck(KM_IMPORTADOR_CONSISTIR_FUNC, '[COD_TIPO] >=1 && [COD_TIPO] <=5');
  * 
- * //confere o campo 'COD_EMPRESA' usando a funÁ„o conferirEmpresa
+ * //confere o campo 'COD_EMPRESA' usando a fun√ß√£o conferirEmpresa
  * KM_importador::addCheck(KM_IMPORTADOR_CONSISTIR_FUNC, 'conferirEmpresa([COD_EMPRESA])');
  * 
  */
@@ -62,28 +62,28 @@ define('KM_IMPORTADOR_CONSISTIR_FUNC', 4);
 define('KM_IMPORTADOR_FORMATO_FIXO', 1);
 
 /**
- * Os campos do arquivo s„o delimitados pelo caracter definido 
+ * Os campos do arquivo s√£o delimitados pelo caracter definido 
  * em KM_importador::sepCampo
  * 
- * @todo Fazer opÁ„o para que o formato delimitado aceite tamanho maximo, pode ate usar
- * a mesma posiÁ„o de tamanho do formato de tamanho fixo
+ * @todo Fazer op√ß√£o para que o formato delimitado aceite tamanho maximo, pode ate usar
+ * a mesma posi√ß√£o de tamanho do formato de tamanho fixo
  */
 define('KM_IMPORTADOR_FORMATO_DELIMITADO', 2);
 
 /**
- * A variavel $dados da instancia da classe È passada como um
- * endereÁo de arquivo
+ * A variavel $dados da instancia da classe √© passada como um
+ * endere√ßo de arquivo
  */
 define('KM_IMPORTADOR_ORIGEM_ARQUIVO', 1);
 
 /**
- * A variavel $dados da instancia da classe È passada como um
- * endereÁo de arquivo
+ * A variavel $dados da instancia da classe √© passada como um
+ * endere√ßo de arquivo
  */
 define('KM_IMPORTADOR_ORIGEM_STRING', 2);
 
 /**
- * classe para importaÁ„o de arquivos
+ * classe para importa√ß√£o de arquivos
  *
  */
 class KM_importador {
@@ -91,8 +91,8 @@ class KM_importador {
 	/**
 	 * Construtor da classe
 	 *
-	 * @param string $pathLayout endereÁo em disco do arquivo contendo o formato dos dados
-	 * @param string $dados endereÁo do arquivo ou string de dados
+	 * @param string $pathLayout endere√ßo em disco do arquivo contendo o formato dos dados
+	 * @param string $dados endere√ßo do arquivo ou string de dados
 	 * @param integer $formato 1=tamanho fixo 2=separados por caracter delimitador
 	 * @param integer $origem 1=disco(gravado) 2=string
 	 * @param string $onError Handler de erro
@@ -109,11 +109,11 @@ class KM_importador {
 		}
 		$this->onError = $onError;
 		if (!is_file($pathLayout)) {
-			$this->setError('Arquivo de layout n„o encontrato: ' . $pathLayout, __LINE__);
+			$this->setError('Arquivo de layout n√£o encontrato: ' . $pathLayout, __LINE__);
 		}
 		if ($origem == KM_IMPORTADOR_ORIGEM_ARQUIVO) {
 			if (!is_file($dados)) {
-				$this->setError('Arquivo de dados n„o encontrato: ' . $dados, __LINE__);
+				$this->setError('Arquivo de dados n√£o encontrato: ' . $dados, __LINE__);
 			}
 			$arrayDados = file_get_contents($dados);
 		} elseif ($origem == KM_IMPORTADOR_ORIGEM_STRING) {
@@ -133,7 +133,7 @@ class KM_importador {
 	}
 
 	/**
-	 * Se È para parar a execuÁ„o do php com um die() caso
+	 * Se √© para parar a execu√ß√£o do php com um die() caso
 	 * ocorra um erro
 	 *
 	 * @var boolean
@@ -152,20 +152,20 @@ class KM_importador {
 	 * no formato 
 	 * array('nome_do_campo'=>
 	 *  //Caso o arquivo seja de tamanho fixo
-	 *  Array('tam'=>int(tamanho), 'tipo'(π)=>String(tipo do campo), 'ini'=>int(inicio), 'fin'=>int(final)
+	 *  Array('tam'=>int(tamanho), 'tipo'(¬π)=>String(tipo do campo), 'ini'=>int(inicio), 'fin'=>int(final)
 	 *    OU
 	 *  //Caso o arquivo seja separado por tab
-	 *  Array('pos'=>int(posiÁ„o do campo no arquivo))
+	 *  Array('pos'=>int(posi√ß√£o do campo no arquivo))
 	 * )
 	 * 
-	 * (π) As definiÁıes dos tipos segue o padr„o ditado no anexo 'DOC - DSV - KM_importador.doc'
+	 * (¬π) As defini√ß√µes dos tipos segue o padr√£o ditado no anexo 'DOC - DSV - KM_importador.doc'
 	 * 
 	 * @var array
 	 */
 	private $arrayLayout = array();
 
 	/**
-	 * Dados para importaÁ„o
+	 * Dados para importa√ß√£o
 	 * 
 	 * @var string
 	 */
@@ -173,7 +173,7 @@ class KM_importador {
 
 	/**
 	 * Linha onde aconteceu o erro, se estiver na parte
-	 * de consistencia retornar· a linha do arquivo de dados,
+	 * de consistencia retornar√° a linha do arquivo de dados,
 	 * caso contrario retorna a linha do programa onde
 	 * aconteceu o erro
 	 *
@@ -190,7 +190,7 @@ class KM_importador {
 
 	/**
 	 * Se os campos do arquivo tem tamanho fixo
-	 * ou s„o delimitados por tab
+	 * ou s√£o delimitados por tab
 	 *
 	 * @var integer
 	 */
@@ -204,7 +204,7 @@ class KM_importador {
 	private $linhaAtual = '';
 
 	/**
-	 * Ultima linha a ser lida quando se usa a funÁ„o fetch
+	 * Ultima linha a ser lida quando se usa a fun√ß√£o fetch
 	 *
 	 * @var integer
 	 */
@@ -218,21 +218,21 @@ class KM_importador {
 	private $linhaInicial = 0;
 
 	/**
-	 * FunÁ„o que ser· chamada no caso de haver erro na importaÁ„o
+	 * Fun√ß√£o que ser√° chamada no caso de haver erro na importa√ß√£o
 	 * aceita as constantes [TITULO] e [ERRO]
 	 * ex: 
-	 * //chama a funÁ„o nomeFuncao passando os dados do erro
+	 * //chama a fun√ß√£o nomeFuncao passando os dados do erro
 	 * km_importador::onError='nomeFuncao('[TITULO]', '[ERRO]');
 	 * 
-	 * //aborta a execuÁ„o mostrando uma mensagem na tela
-	 * km_importador::onError='die("Erro na importaÁ„o: [ERRO]<br>")');
+	 * //aborta a execu√ß√£o mostrando uma mensagem na tela
+	 * km_importador::onError='die("Erro na importa√ß√£o: [ERRO]<br>")');
 	 * 
 	 * @var string
 	 */
 	private $onError = '';
 
 	/**
-	 * EndereÁo em disco do arquivo contendo o formato dos dados
+	 * Endere√ßo em disco do arquivo contendo o formato dos dados
 	 * 
 	 * @var string
 	 */
@@ -240,7 +240,7 @@ class KM_importador {
 
 	/**
 	 * Delimitador de campo no caso do $formato ser
-	 * 2=separados por caracter delimitador, geralmente È um \t (tab)
+	 * 2=separados por caracter delimitador, geralmente √© um \t (tab)
 	 *
 	 * @var string
 	 */
@@ -266,10 +266,10 @@ class KM_importador {
 	 */
 	public function addCheck($tipoConsistencia, $valor1 = '', $valor2 = '', /*$linhaIni = null, $linhaFin = null, */$errMsg = null) {
 		if ($this->getError()) {
-			/*se j· tiver feito uma consistencia e dado erro n„o pode perder a mensagem*/
+			/*se j√° tiver feito uma consistencia e dado erro n√£o pode perder a mensagem*/
 			return false;
 		}
-		/* linha inicial de onde o teste ser· executado(comeÁa de "0"(zero))*/
+		/* linha inicial de onde o teste ser√° executado(come√ßa de "0"(zero))*/
 		$linhaIni = $this->linhaInicial;
 		
 		$this->setLine($linhaIni);
@@ -280,7 +280,7 @@ class KM_importador {
 					$aux = count($linha);
 					if (count($linha) != $valor1) {
 						/*coloca o numero de colunas no campo $msg*/
-						$errMsg = 'N˙mero de colunas inesperado.<br>Esperado: %s. Encontrado: %s';
+						$errMsg = 'N√∫mero de colunas inesperado.<br>Esperado: %s. Encontrado: %s';
 						$this->setError(sprintf($errMsg, $valor1, $aux), $this->linhaAtual + 1);
 						$this->reset();
 						return false;
@@ -310,7 +310,7 @@ class KM_importador {
 						}
 					}
 					
-					/*executa a validaÁ„o*/
+					/*executa a valida√ß√£o*/
 					$aux = strlen($this->arrayDados[$this->linhaAtual]);
 					if ($aux != $valor1) {
 						$errMsg = 'Comprimento de linha inesperado.<br>Esperado: %s. Encontrado: %s';
@@ -320,7 +320,7 @@ class KM_importador {
 					}
 					break;
 				default:
-					die('Tipo n„o implementado');
+					die('Tipo n√£o implementado');
 					break;
 			}
 		}
@@ -329,12 +329,12 @@ class KM_importador {
 	}
 
 	/**
-	 * Chama a funÁ„o de tratamento de erro registrada
+	 * Chama a fun√ß√£o de tratamento de erro registrada
 	 *
 	 */
 	private function callErrorHandle() {
 		if ($this->onError) {
-			$aMsg['TITULO'] = 'Erro na importaÁ„o';
+			$aMsg['TITULO'] = 'Erro na importa√ß√£o';
 			$aMsg['ERRO'] = 'Arquivo de dados: ' . $this->dados . '<br>';
 			$aMsg['ERRO'] .= 'Arquivo de layout: ' . $this->pathLayout . '<br>';
 			$aMsg['ERRO'] .= 'Linha: ' . $this->errorLine . '<br>';
@@ -347,7 +347,7 @@ class KM_importador {
 	}
 
 	/**
-	 * AvanÁa o cursor de leitura para a proxima linha
+	 * Avan√ßa o cursor de leitura para a proxima linha
 	 *
 	 * @return bool
 	 */
@@ -366,7 +366,7 @@ class KM_importador {
 	/**
 	 * Reseta o cursor de leitura para a primeira linha
 	 * 
-	 * @todo verificar se esta funÁ„o esta sendo utilizada
+	 * @todo verificar se esta fun√ß√£o esta sendo utilizada
 	 * 
 	 * @return bool
 	 */
@@ -416,8 +416,8 @@ class KM_importador {
 	}
 
 	/**
-	 * Posiciona o objeto sobre a linha e lÍ os dados de acordo com o layout
-	 * se n„o for passado o parametro $num lÍ a ultima linha posicionada pelo fetch()
+	 * Posiciona o objeto sobre a linha e l√™ os dados de acordo com o layout
+	 * se n√£o for passado o parametro $num l√™ a ultima linha posicionada pelo fetch()
 	 *
 	 * @param integer $num
 	 * @return array
@@ -438,7 +438,7 @@ class KM_importador {
 			}
 		}
 		
-		/*caso n„o exista a linha ou seja uma linha em branco*/
+		/*caso n√£o exista a linha ou seja uma linha em branco*/
 		if (!$ok) {
 			/*limpa os campos*/
 			while (list($campo) = each($this->arrayLayout)) {
@@ -459,7 +459,7 @@ class KM_importador {
 				$this->$campo = $retorno[$campo] = $this->getType($def_campo['tipo'], $aux);
 			} else {
 				if (!isset($linha[$def_campo['pos']])) {
-					$errMsg = 'Indice n„o encontrado<br>Indice: %s. Array: %s';
+					$errMsg = 'Indice n√£o encontrado<br>Indice: %s. Array: %s';
 					$this->setError(sprintf($errMsg, $def_campo['pos'], print_r($linha, true)), __LINE__);
 					return false;
 				}
@@ -489,7 +489,7 @@ class KM_importador {
 		$defTipo = explode(',', $defTipo);
 		switch ($defTipo[0]) {
 			case 'N':
-				/*definiÁ„o do tipo numerico*/
+				/*defini√ß√£o do tipo numerico*/
 				$val = ereg_replace('[^0-9-]', '', $val);
 				
 				/*converte para inteiro ex: $val=000150 : 150*/
@@ -501,11 +501,11 @@ class KM_importador {
 				}
 				break;
 			case 'S':
-				/*definiÁ„o do tipo string*/
+				/*defini√ß√£o do tipo string*/
 				$val = trim($val);
 				break;
 			default:
-				$errMsg = 'Tipo de campo n„o definido, tipo:"%s"';
+				$errMsg = 'Tipo de campo n√£o definido, tipo:"%s"';
 				$this->setError(sprintf($errMsg, join(',', $defTipo)), __LINE__);
 		}
 		return $val;
@@ -527,7 +527,7 @@ class KM_importador {
 	}
 
 	/**
-	 * LÍ um arquivo layout para a classe
+	 * L√™ um arquivo layout para a classe
 	 *
 	 * O arquivo deve estar em um dos formatos
 	 * 
@@ -540,7 +540,7 @@ class KM_importador {
 	 * 	DEF_TIPO_CAMPO + "="(igualdade) + NOME_DO_CAMPO_SEM_ESPACO + "=" + indice de pos. do campo
 	 *
 	 * @param string $arquivoLayout
-	 * @param integer $linhaInicial usado para pular cabeÁalhos de arquivos que n„o precisam ser lidos
+	 * @param integer $linhaInicial usado para pular cabe√ßalhos de arquivos que n√£o precisam ser lidos
 	 * @param integer $linhaFinal usado para parar de ler um arquivo antes da linha final
 	 */
 	public function setLayout($arquivoLayout, $linhaInicial = 0, $linhaFinal = null) {
@@ -557,7 +557,7 @@ class KM_importador {
 				continue;
 			}
 			
-			/*separando as partes da definiÁ„o: tipo, nmcampo e tamanho(quando definido)*/
+			/*separando as partes da defini√ß√£o: tipo, nmcampo e tamanho(quando definido)*/
 			$val = explode('=', $val);
 			list($tipo, $campo) = $val;
 			if ($this->tipoArquivo == KM_IMPORTADOR_FORMATO_FIXO) {
@@ -594,7 +594,7 @@ class KM_importador {
 	}
 
 	/**
-	 * Seta a linha inicial para comeÁar o fetch
+	 * Seta a linha inicial para come√ßar o fetch
 	 *
 	 * @param integer $linhaInicial
 	 * @param integer $linhaFinal
