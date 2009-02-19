@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FAQ KM_importador</title>
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+</head>
+
+<body>
+<h1>FAQ KM_importador
+</h1>
+<h2>Especificações gerais</h2>
+Cada linha do arquivo de layout é responsável por definir um campo, o sinal de igualdade separam os vários item da definição sendo os conjuntos separados assim:<br />
+Ex:
+ <table border="1">
+ <tr>
+ <th>Tipo </th>
+ <th>Separador</th>
+ <th>Nome do campo(1)</th>
+ <th>Separador</th>
+ <th>Tamanho(2)</th>
+ <th>Comentários(3)</th>
+ </tr>
+ <tr>
+ <td>N</td>
+ <td align="center">=</td>
+ <td>IDCLIENTE</td>
+ <td align="center">=</td>
+ <td>10</td>
+ <td>//Código cliente</td>
+ </tr>
+ <tr>
+ <td>S</td>
+ <td align="center">=</td>
+ <td>NMCLIENTE</td>
+ <td align="center">=</td>
+ <td>60</td>
+ <td>//Nome cliente</td>
+ </tr>
+ <tr>
+ <td>N,2</td>
+ <td align="center">=</td>
+ <td>VALOR_COMPRA</td>
+ <td align="center">=</td>
+ <td>10</td>
+ <td>//Valor compado</td>
+ </tr>
+</table>
+
+<ol>
+ <li>Sempre maiúsculo, sem caracteres especiais ou espaço</li>
+ <li>Necessário quanto do tipo do arquivo é de campos com tamanho especifico</li>
+ <li>Campo não obrigatório, inicia-se com //(dupla barra) e vai ate o final da linha</li>
+</ol>
+<h2>Definição dos tipos </h2>
+Na definição de tipo são aceitos parâmetros adicionais após o símbolo do tipo, a quantidade e tipos destes parâmetros vão depender diretamente das especificações do tipo e devem ser passados separando-os com virgula
+<table border="1">
+ <tr>
+ <th>Símbolo a ser usado</th>
+ <th>Quando utilizar</th>
+ <th>Comentário</th>
+ </tr>
+ <tr>
+ <td>S</td>
+ <td>Use para textos em geral</td>
+ <td>&nbsp;</td>
+ </tr>
+ <tr>
+ <td>N</td>
+ <td>Use para números inteiros ou decimais</td>
+ <td>Na leitura deste campo serão ignorados tudo que não seja números entre 0 e 9 e o sinal de “-“(negativo), portanto mesmo que venha a separação decimal do Excel esta será ignorada e prevalecerá a especificada no layout
+ <ul>
+ <li>O primeiro parâmetro que este tipo aceita é a quantidade de casas decimais para a leitura. <br>
+ 
+ Ex:
+ <table border="1">
+ <tr>
+ <th nowrap="nowrap">Definição </th>
+ <th nowrap="nowrap">Valor no Arquivo</th>
+ <th nowrap="nowrap">Valor no PHP</th>
+ </tr>
+ <tr>
+ <td>N,2</td>
+ <td>0001000</td>
+ <td>10.00</td>
+ </tr>
+ <tr>
+ <td>N,0 ou N</td>
+ <td>R$ 1.500</td>
+ <td>150059</td>
+ </tr>
+ <tr>
+ <td>N,2</td>
+ <td>00-1000</td>
+ <td>-10.00</td>
+ </tr>
+ <tr>
+ <td>N,2</td>
+ <td>R$ -1.500,59</td>
+ <td>-1500.59</td>
+ </tr>
+ </table>
+ </li>
+ <li>O segundo parâmetro que este tipo aceita é a quantidade de casas decimais para a gravação. Pode ser especificado o valor -1, que irá gravar a mesma quantidade de casas decimais especificada no parâmetro 1 porem sem separador decimal<br>
+ Ex:
+ <table border="1">
+ <tr>
+ <th nowrap="nowrap">Definição </th>
+ <th nowrap="nowrap">Valor no PHP</th>
+ <th nowrap="nowrap">Valor gravado</th>
+ </tr>
+ <tr>
+ <td>N,2,-1</td>
+ <td>10.00</td>
+ <td>1000</td>
+ </tr>
+ <tr>
+ <td>N,2,0</td>
+ <td>10.00</td>
+ <td>10</td>
+ </tr>
+ <tr>
+ <td>N,2,2</td>
+ <td>10.00</td>
+ <td><p class="style1">Não implementado, pois não foi definido o separador decimal para gravação<br />
+ (18/07/2007)</td>
+ </tr>
+ </table>
+ </li>
+ </ul>
+ </td>
+ </tr>
+ <tr>
+ <td><p class="style1">D</td>
+ <td><p class="style1">Datas com ou sem horário (18/07/2007 a importação com horário será implementado no futuro) </td>
+ <td><ul type="disc" class="style1">
+ <li>O primeiro parâmetro que este tipo aceita é o formato da data para leitura (18/07/2007 a ser implementado) </li>
+ <li>O segundo parâmetro que este tipo aceita é o formato da data para gravação (18/07/2007 a ser implementado) </li>
+ </ul></td>
+ </tr>
+</table>
+&nbsp;
+</body>
+</html>
+
