@@ -275,7 +275,6 @@ class KM_importador {
 		$this->setLine($linhaIni);
 		while ($this->fetch()) {
 			$linha = $this->getLine();
-echo nl2br(			print_r($linha,true));
 			switch ($tipoConsistencia) {
 				case KM_IMPORTADOR_CONSISTIR_COLUNAS:
 					$aux = count($linha);
@@ -283,21 +282,23 @@ echo nl2br(			print_r($linha,true));
 						/*coloca o numero de colunas no campo $msg*/
 						$errMsg = 'Número de colunas inesperado.<br>Esperado: %s. Encontrado: %s';
 						$this->setError(sprintf($errMsg, $valor1, $aux), $this->linhaAtual + 1);
+						$this->reset();
 						return false;
 					}
 					break;
 				case KM_IMPORTADOR_CONSISTIR_FUNC:
-					/*substitui strings como [NOME_CAMPO] para $linha["NOME_CAMPO"] para executar o eval*/
-					$aux = str_replace(array('[', ']'), array('$linha["', '"]'), $valor1);
-					echo $linha["EXTRATO4"].'<br>';
+						/*substitui strings como [NOME_CAMPO] para $linha["NOME_CAMPO"] para executar o eval*/
+						$aux = str_replace(array('[', ']'), array('$linha["', '"]'), $valor1);
 					if ($linha and !eval('error_reporting(E_ALL); return ' . $aux . ';')) {
 						$this->setError($errMsg, $this->linhaAtual + 1);
+						$this->reset();
 						return false;
 					}
 					break;
 				case KM_IMPORTADOR_CONSISTIR_REGEX:
 					if (!ereg($valor2, $linha[$valor1])) {
 						$this->setError($errMsg, $this->linhaAtual + 1);
+						$this->reset();
 						return false;
 					}
 					break;
@@ -314,6 +315,7 @@ echo nl2br(			print_r($linha,true));
 					if ($aux != $valor1) {
 						$errMsg = 'Comprimento de linha inesperado.<br>Esperado: %s. Encontrado: %s';
 						$this->setError(sprintf($errMsg, $valor1, $aux), $this->linhaAtual + 1);
+						$this->reset();
 						return false;
 					}
 					break;
@@ -327,7 +329,7 @@ echo nl2br(			print_r($linha,true));
 	}
 
 	/**
-	 * Chama o handle de erro
+	 * Chama a função de tratamento de erro registrada
 	 *
 	 */
 	private function callErrorHandle() {
@@ -368,7 +370,7 @@ echo nl2br(			print_r($linha,true));
 	 * 
 	 * @return bool
 	 */
-	private function reset() {
+	public function reset() {
 		$this->linhaAtual = '';
 	}
 
