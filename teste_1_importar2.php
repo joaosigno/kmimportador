@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<title>Participantes da Reunião do dia 14/02</title>
+<title>Participantes da Reuniï¿½o do dia 14/02</title>
 <style>
 <!--
 table,td,th {
@@ -19,7 +19,16 @@ th {
 <body>
 <h1>Consistencia do campo "Compareceu"</h1>
 <?php
-error_reporting(E_ALL);
+/**
+ * Teste 1 importador 2
+ * 
+ * @package   KM_importador
+ * @author    Diego Tolentino <diegotolentino@gmail.com>
+ * @license   http://www.gnu.org/licenses/lgpl.txt LGPL
+ * @link      http://code.google.com/p/kmimportador/
+ * @version   1.0 UTF-8
+ */
+
 
 /**
  * classe km_importador
@@ -40,13 +49,13 @@ if (!$kmi->addCheck(KM_IMPORTADOR_CONSISTIR_TAMANHO)) {
 	echo $kmi->getError() . '<br>';
 }
 
-/*Confere se o campo compareceu tem algum outro valor que não seja S ou N*/
+/*Confere se o campo compareceu tem algum outro valor que nï¿½o seja S ou N*/
 if (!$kmi->addCheck(KM_IMPORTADOR_CONSISTIR_REGEX, 'COMPARECEU', '[SN]')) {
-	echo '<b>Erro:</b> Valor inválido para o campo "COMPARECEU", o campo só aceita "S" ou "N"<br>';
+	echo '<b>Erro:</b> Valor invï¿½lido para o campo "COMPARECEU", o campo sï¿½ aceita "S" ou "N"<br>';
 	echo '<b>Linha:</b> ' . $kmi->getErrorLine() . '<br>';
 }
 
-/*cabeçalho da tabela*/
+/*cabeï¿½alho da tabela*/
 echo '<table>';
 echo '  <tr>';
 echo '    <th>Inscrito</th>';

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<title>Participantes da Reunião do dia 14/02</title>
+<title>Participantes da Reuniï¿½o do dia 14/02</title>
 <style>
 <!--
 table,td,th {
@@ -19,6 +19,16 @@ th {
 <body>
 <h1>Limples Listagem</h1>
 <?php
+/**
+ * Teste 1 importador 1
+ * 
+ * @package   KM_importador
+ * @author    Diego Tolentino <diegotolentino@gmail.com>
+ * @license   http://www.gnu.org/licenses/lgpl.txt LGPL
+ * @link      http://code.google.com/p/kmimportador/
+ * @version   1.0 UTF-8
+ */
+
 /**
  * classe km_importador
  */
@@ -39,7 +49,7 @@ if (!$kmi->addCheck(KM_IMPORTADOR_CONSISTIR_TAMANHO)) {
 	echo $kmi->getError() . '<br>';
 }
 
-/*começo da escrita da tabela*/
+/*comeï¿½o da escrita da tabela*/
 echo '<table border="1">';
 echo '  <tr>';
 echo '    <th>Inscrito</th>';
