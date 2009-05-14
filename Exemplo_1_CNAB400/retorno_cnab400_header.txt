@@ -1,0 +1,18 @@
+S=TIPO_REGISTRO=1//Tipo do Registro  ("0" – Registro Header) 
+N=TIPO_ARQUIVO=1//Tipo do arquivo (Sempre  "1" que define Retorno)
+S=TIPO_ARQUIVO_LITERAL=7//Tipo do arquivo Alfabético (Sempre "RETORNO")
+S=TIPO_SERVICO=2//Identificação do tipo de serviço (Sempre "01" que define Cobrança)
+S=TIPO_SERVICO_LITERAL=15//Nome do Serviço "COBRANÇA" 
+N=AGENCIA=4//Numérico igual ao código da agência onde a empresa possui conta corrente
+N=AGENCIA_DV=1//DV cooperativa do cliente
+N=CODIGO_CEDENTE=8//Código do Cedente
+N=CODIGO_CEDENTE_DV=1//DV Código do Cedente
+N=CONTA_CORRENTE=5//Conta Corrente
+N=CONTA_CORRENTE_DV=1//Número do Convênio/ Conta Corrente
+S=NOME_CEDENTE=30//Nome do Cedente
+S=BANCO=3//Número do banco na câmara de compensação
+S=BANCO_LITERAL=15//Nome do banco por extenso
+D,%d%m%y,%d/%m/%Y=DTMOVIMENTO=6//Data de gravação do movimento(Numérico no formato Dia/Mês/Ano (DDMMAA))
+N=SEQUENCIAL_REMESSA=7//Seqüencial da Remessa Número seqüencial acrescido de 1 a cada remessa. Inicia com 0000001 
+S=ESPACO_VAZIO2=287//Brancos
+S=SEQUENCIAL_DO_REGISTRO=6//No. Sequencial do registro

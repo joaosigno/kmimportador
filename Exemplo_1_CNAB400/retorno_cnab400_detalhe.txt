@@ -1,0 +1,52 @@
+S=TIPO_REGISTRO=1//Tipo do Registro ("1" – Registro Detalhe)
+S=TIPO_PESSOA=2//Tipo do cliente (01 – CPJ , 02 – CNPJ)
+S=CPF_CNPJ_CEDENTE=14//CPF/CGC do cliente sem máscara
+N=AGENCIA=4//Cooperativa do cliente
+N=AGENCIA_DV=1//DV cooperativa do cliente
+N=CONTA_CORRENTE=8//Conta Corrente Cliente
+N=CONTA_CORRENTE_DV=1//DV conta Cliente
+N=CONVENIO=6//Número do Convênio do cliente
+S=CONTROLE_CLIENTE=25//Número Controle Cliente
+N=NOSSO_NUMERO=11//Nosso Número
+S=NOSSO_NUMERO_DV=1//DV Nosso Número
+S=NUMERO_PARCELA=2//Número da Parcela
+S=ESPACO_VAZIO1=4//BRANCOS
+S=CODIGO_DE_BAIXA_RECUSA=2//Código de baixa/Recusa
+S=ESPECIE_TITULO=3//Preencher com espécie do título
+S=FORNECIDO_PELO_BANCO=3//Fornecido pelo banco
+S=ESPACO_VAZIO2=1//Conta Caução (Preencher com "0")
+S=ESPACO_VAZIO3=5//Código de Responsabilidade(Preencher com "00000")
+S=ESPACO_VAZIO4=1//BRANCOS
+S=TAXA_DESCONTO=5//Taxa de desconto
+S=TAXA_IOF=5//Taxa de IOF
+S=ESPACO_VAZIO5=1//1 Espaço em branco
+S=CARTEIRA=2//Carteira / Modalidade
+S=ESPACO_VAZIO6=2//BRANCOS
+D,%d%m%y,%d/%m/%Y=DTPAGAMENTO=6//Data Entrada ou Liquidação
+S=NUMERO_DOCUMENTO=10//Seu Número(Número título dado pelo cedente)
+S=ESPACO_VAZIO7=20//20 espaços em branco
+D,%d%m%y,%d/%m/%Y=DTVENCIMENTO=6//Ddmmaa Vencimento Título
+N,2=VALOR_DOCUMENTO=13//Valor Nominal do Título.
+S=BANCO_PARAMENTO=3//Número Banco (‘756’ – Bancoob) onde o sacado pagou
+S=AGENCIA_PARAMENTO=4//Núm. Agência onde o sacado pagou
+S=AGENCIA_PARAMENTO_DV=1//DV Agência onde o sacado pagou
+S=ESPECIE_TITULO=2//Espécie do Título
+D,%d%m%y,%d/%m/%Y=DTCREDITO=6//Data do crédito
+N,2=VALOR_TARIFA=7//Valor da Tarifa
+N,2=OUTRAS_DESPESAS=13//Outras despesas
+N,2=JUROS_DO_DESCONTO=13//Juros do desconto
+S=IOF_DO_DESCONTO=13//IOF do desconto
+N,2=ABATIMENTO=13//Abatimento
+N,2=DESCONTO_CONCEDIDO=13//Desconto Concedido
+N,2=VALOR_PAGAMENTO=13//Valor Recebido
+N,2=JUROS_DE_MORA=13//Juros de Mora
+S=OUTROS_RECEBIMENTOS=13//Outros recebimentos
+S=ABATIMENTO_NAO_APROVEITADO=13//Abatimento não aproveitado
+S=VALOR_LANCAMENTO=13//Valor do Lançamento
+S=INDICATIVO_DEBITO_CREDITO=1//Indicativo débito/crédito
+S=INDICATIVO_VALOR=1//Indicativo valor
+S=VALOR_AJUSTE=12//Valor do Ajuste
+S=ESPACO_VAZIO8=10//Brancos
+S=CPF_CNPJ_SACADO=14//CPF/CNPJ do sacado (Pode ser 0)
+S=ESPACO_VAZIO9=38//Brancos
+S=SEQUENCIAL_DO_REGISTRO=6//No. Sequencial do registro
